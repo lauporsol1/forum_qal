@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>New Post - Forum</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container text-center">
+		<div>
+			<h1>Create your post!</h1>
+		</div>
+		<form th:action="@{/process_create}" th:object="${post}" method="post"
+			style="max-width: 600px; margin: 0 auto;">
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Title: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{title}" class="form-control" required minlength="2"
+							maxlength="20" />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Body: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{body}" class="form-control" required minlength="6"
+							maxlength="140" />
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Category: </label>
+					<select th:field="*{category}">
+						<option th:value="'question'" th:text="question"></option>
+						<option th:value="'suggestion'" th:text="suggestion"></option>
+						<option th:value="'clarification'" th:text="clarification"></option>
+					</select>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-4 col-form-label">Image: </label>
+					<div class="col-8">
+						<input type="text" th:field="*{image}" class="form-control" required minlength="2"
+							maxlength="100" />
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-8">
+						<input type="hidden" th:field="*{threadFk}" class="form-control" />
+					</div>
+				</div>
+
+				<div>
+					<button type="submit" class="btn btn-primary">Post!</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
