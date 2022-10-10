@@ -2,6 +2,10 @@ create table threads (
 	title varchar(255)
 );
 
+create table bannedword (
+	word varchar(255)
+);
+
 create type category as enum ('question','suggestion','clarification');
 
 create table posts (
@@ -35,3 +39,12 @@ values('Post 4','question','body','https://image.com',2);
 
 insert into users (email,first_name,last_name,password)
 values('user1@mail.com','User1','LastName1','12345abcd');
+
+insert into bannedword (word)
+values('somosmaranya');
+insert into bannedword (word)
+values('once');
+insert into bannedword (word)
+values('octubre');
+insert into bannedword (word)
+values('salax');

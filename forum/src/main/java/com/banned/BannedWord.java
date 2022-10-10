@@ -10,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "banned_word")
+@Table(name = "bannedword")
 public class BannedWord implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,18 +25,14 @@ public class BannedWord implements Serializable {
 	@Column(name = "word")
 	private String word;
 
-	@Column(name="banned_words")
-	private List<BannedWord> bannedWords;
-
 	public BannedWord() {
 
 	}
 
-	public BannedWord(Integer id, String word, List<BannedWord> bannedWords) {
+	public BannedWord(Integer id, String word) {
 		super();
 		this.id = id;
 		this.word = word;
-		this.bannedWords = bannedWords;
 	}
 
 	public Integer getId() {
@@ -53,13 +50,13 @@ public class BannedWord implements Serializable {
 	public void setWord(String word) {
 		this.word = word;
 	}
-	
-	public List<BannedWord> getBannedWords() {
-		return bannedWords;
+	public static Integer getSpamInText(String txt, final List<BannedWord> spamWords) {
+		final String str = txt.toLowerCase();
+		for (final BannedWord s : spamWords) {
+			if (txt.toLowerCase().contains(s.getWord().toLowerCase())) {
+				txt = txt.toLowerCase().replaceAll(s.getWord().toLowerCase(), "");
+			}
+		}
+		return str.length() - txt.toLowerCase().length();
 	}
-
-	public void setBannedWords(List<BannedWord> bannedWords) {
-		this.bannedWords = bannedWords;
-	}
-
 }

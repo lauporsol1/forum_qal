@@ -1,6 +1,6 @@
 package com.banned;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.transaction.Transactional;
 
@@ -9,13 +9,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BannedWordRepository extends CrudRepository<BannedWord,Integer> {
+public interface BannedWordRepository extends CrudRepository<BannedWord, Integer> {
 
-	
-	@Query("select bw.banned_words from BannedWord bw where bw.id = ?1")
-	List<BannedWord> getBannedWords();
-	
+//	@Query("select bw.banned_words from BannedWord bw where bw.id = ?1")
+//	List<BannedWord> getBannedWords();
+
 	@Transactional
 	void deleteById(Integer id);
-	
+
+	@Query("select a from BannedWord a")
+	Collection<BannedWord> findBannedWord();
 }
