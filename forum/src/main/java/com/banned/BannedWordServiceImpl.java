@@ -3,7 +3,9 @@ package com.banned;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BannedWordServiceImpl implements BannedWordService{
 	
 	@Autowired
@@ -11,7 +13,7 @@ public class BannedWordServiceImpl implements BannedWordService{
 
 	@Override
 	public List<BannedWord> getBannedWords() {
-		return bwordRepository.getBannedWords();
+		return (List<BannedWord>) bwordRepository.findAll();
 	}
 
 	@Override

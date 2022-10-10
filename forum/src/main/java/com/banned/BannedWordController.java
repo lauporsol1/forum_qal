@@ -14,23 +14,23 @@ public class BannedWordController {
 	@Autowired
 	private BannedWordServiceImpl bwordService;
 
-	@GetMapping("/banned_words")
+	@GetMapping("/bannedword")
 	public String getBannedWords(Model model) {
 		List<BannedWord> listBannedWords = bwordService.getBannedWords();
 		model.addAttribute("listBannedWords", listBannedWords);
-		return "bannedWords";
+		return "bannedword";
 	}
 
-	@GetMapping("/banned_words/create")
+	@GetMapping("/bannedword/create")
 	public String createBannedWord(Model model) {
 		BannedWord bw = new BannedWord();
-		model.addAttribute("banned_word", bw);
-		return "create_banned_word";
+		model.addAttribute("bannedword", bw);
+		return "create_bannedword";
 	}
 
-	@PostMapping("/process_create_banned_word")
-	public String createBannedWOrdProcess(BannedWord bw) {
+	@PostMapping("/process_create_bannedword")
+	public String createBannedWordProcess(BannedWord bw) {
 		bwordService.saveBannedWord(bw);
-		return "redirect:/banned_words";
+		return "redirect:/bannedword";
 	}
 }

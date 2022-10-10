@@ -2,6 +2,10 @@ create table threads (
 	title varchar(255)
 );
 
+create table bannedword (
+	word varchar(255)
+);
+
 create type category as enum ('question','suggestion','clarification');
 
 create table posts (
@@ -25,13 +29,22 @@ insert into threads (title)
 values('Thread 2');
 
 insert into posts (title,category,body,image,thread_id)
-values('Post 1','question','body','https://image.com',1);
+values('Post 1','question','body','images/qm-forum.png',1);
 insert into posts (title,category,body,image,thread_id)
-values('Post 2','suggestion','body','https://image.com',1);
+values('Post 2','suggestion','body','images/loudspeaker-forum.png',1);
 insert into posts (title,category,body,image,thread_id)
-values('Post 3','clarification','body','https://image.com',2);
+values('Post 3','clarification','body','images/pencil-forum.png',2);
 insert into posts (title,category,body,image,thread_id)
-values('Post 4','question','body','https://image.com',2);
+values('Post 4','question','body','images/qm-forum.png',2);
 
 insert into users (email,first_name,last_name,password)
 values('user1@mail.com','User1','LastName1','12345abcd');
+
+insert into bannedword (word)
+values('somosmaranya');
+insert into bannedword (word)
+values('once');
+insert into bannedword (word)
+values('octubre');
+insert into bannedword (word)
+values('salax');

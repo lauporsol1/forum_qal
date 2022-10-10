@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.user.CustomUserDetailsService;
 
@@ -56,5 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("email").defaultSuccessUrl("/index").permitAll().and().logout().logoutSuccessUrl("/")
 				.permitAll();
 	}
+
 
 }
