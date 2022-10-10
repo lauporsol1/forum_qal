@@ -1,9 +1,14 @@
 package com.post;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 
 import com.banned.BannedWord;
 import com.banned.BannedWordRepository;
@@ -43,6 +48,17 @@ public class PostServiceImpl implements PostService {
 		}
 
 		return postRepository.save(post);
+	}
+	
+	public String image(Integer id) {
+		Post post = postRepository.findById(id).orElseThrow();
+		String url = "src/main/resources/loudspeaker-forum.png";
+		if (post.getCategory() == Category.question) {
+			url = "src/main/resources/qm-forum.png";
+		} else if (post.getCategory() == Category.clarification) {
+			url = "src/main/resources/pencil-forum.png";
+		}
+		return url;
 	}
 
 	public List<Post> getPostbyThreads(Integer id) {
